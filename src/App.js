@@ -96,7 +96,7 @@ function App(props) {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
-              Mentors and Students
+              Assigning Mentor
             </Typography>
           </Toolbar>
         </AppBar>
