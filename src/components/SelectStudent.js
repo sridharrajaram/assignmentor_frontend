@@ -1,13 +1,13 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { url } from "./UrlSettings";
 
-const mentorContext = createContext(null);
 
-function SelectStudent() {
+
+function SelectStudent({ setStudentData }) {
 
   const navigate = useNavigate();
-  const { setStudentData } = useContext(mentorContext);
+  
   const [students, setStudents] = useState([]);
 
   function getStudents() {
@@ -35,7 +35,7 @@ function SelectStudent() {
             className="submit-button"
             onClick={() => {
               setStudentData(student);
-              navigate.push("/addMentor");
+              navigate("/addMentor");
             }}
           >
             Select student

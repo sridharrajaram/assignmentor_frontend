@@ -45,7 +45,7 @@ function CreateStudent() {
     }),
     onSubmit: (student) => {
       addStudent(student);
-      navigate.push("/Home");
+      navigate("/");
     },
   });
   

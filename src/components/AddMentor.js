@@ -1,14 +1,13 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { url } from "./UrlSettings";
 
-const mentorContext = createContext(null);
+function AddMentor({ studentData }) {
 
-function AddMentor() {
   const navigate = useNavigate();
-  const { studentData } = useContext(mentorContext);
   const [mentors, setMentors] = useState([]);
   const { email, mobileNo, name, pic } = studentData;
+  
   function getMentors() {
     fetch(`${url}/mentors`, {
       method: "GET",
@@ -45,7 +44,7 @@ function AddMentor() {
             className="submit-button"
             onClick={() => {
               assignMentor(mentor);
-              navigate.push("/Home");
+              navigate("/");
             }}
           >
             Assign mentor

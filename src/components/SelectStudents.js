@@ -1,16 +1,13 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import AddMentees from "./AddMentees.js";
 import { url } from "./UrlSettings.js";
 
-const mentorContext = createContext(null);
-
-function SelectStudents() {
+function SelectStudents({ mentorData }) {
 
   const [newMentees, setnewMentees] = useState([]);
   const navigate = useNavigate();
   const [nonMentees, setNonMentees] = useState([]);
-  const { mentorData } = useContext(mentorContext);
 
   function getNonMentees() {
     fetch(`${url}/students`, {
@@ -45,10 +42,10 @@ function SelectStudents() {
         />
       ))}
       <button
-        className=" final-button"
+        className="final-button"
         onClick={() => {
           assignNewMentees();
-          navigate.push("/Home");
+          navigate("/");
         }}
       >
         Assign Students

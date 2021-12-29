@@ -17,7 +17,7 @@ function CreateMentor() {
       },
     })
       .then((data) => data.json())
-      .then(() => navigate.push("/Home"));
+      .then(() => navigate("/"));
   };
 
   const formik = useFormik({
@@ -47,7 +47,7 @@ function CreateMentor() {
     }),
     onSubmit: (mentor) => {
       addMentor(mentor);
-      navigate.push("/Home");
+      navigate("/");
     },
   });
   

@@ -1,16 +1,16 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { url } from "./UrlSettings";
 
-const mentorContext = createContext(null);
-function DisplayMentees() {
 
-  const { mentorData } = useContext(mentorContext);
-  let mentorEmail = mentorData.email;
+function DisplayMentees({ mentorData }) {
+
+  const { email } = mentorData;
+  
   const [mentees, setMentees] = useState([]);
 
   function getMentees() {
     fetch(
-      `${url}/mentees/${mentorEmail}`,
+      `${url}/mentees/${email}`,
       {
         method: "GET",
         headers: {

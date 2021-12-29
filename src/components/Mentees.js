@@ -1,12 +1,12 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { url } from "./UrlSettings";
 
-const mentorContext = createContext(null);
-function Mentees() {
+
+function Mentees({ setMentorData }) {
   
   const navigate = useNavigate();
-  const { setMentorData } = useContext(mentorContext);
+  
   const [mentors, setMentors] = useState([]);
 
   function getMentors() {
@@ -23,8 +23,8 @@ function Mentees() {
   return (
     <div className="container">
       <div className="heading">Mentors</div>
-      {mentors.map((mentor) => (
-        <div className="card">
+      {mentors.map((mentor,index) => (
+        <div key={`${mentor}_${index}`} className="card">
           <img src={mentor.pic} alt="" />
           <div className="name">{mentor.name}</div>
           <div className="mobileNo">{mentor.mobileNo}</div>
@@ -33,7 +33,7 @@ function Mentees() {
             className="submit-button"
             onClick={() => {
               setMentorData(mentor);
-              navigate.push("/displayMentees");
+              navigate("/displayMentees");
             }}
           >
             Display Mentees
