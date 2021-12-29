@@ -2,7 +2,7 @@ import React from 'react';
 
 function Home() {
     return (
-        <div>This is an app for creating, assigning of mentors and students</div>
+        <div>Welcome to the web application for assigning mentor to student or student to mentor</div>
     );
 }
 
