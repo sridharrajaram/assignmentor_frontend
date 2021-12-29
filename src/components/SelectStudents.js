@@ -1,16 +1,19 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import AddMentees from "./AddMentees.js";
+import { url } from "./UrlSettings.js";
 
 const mentorContext = createContext(null);
+
 function SelectStudents() {
+
   const [newMentees, setnewMentees] = useState([]);
   const navigate = useNavigate();
   const [nonMentees, setNonMentees] = useState([]);
   const { mentorData } = useContext(mentorContext);
 
   function getNonMentees() {
-    fetch("https://ranjith-assign-mentor.herokuapp.com/students", {
+    fetch(`${url}/students`, {
       method: "GET",
     })
       .then((data) => data.json())
@@ -19,7 +22,7 @@ function SelectStudents() {
   }
 
   function assignNewMentees() {
-    fetch("https://ranjith-assign-mentor.herokuapp.com/assignStudents", {
+    fetch(`${url}/assignStudents`, {
       method: "PUT",
       body: JSON.stringify({ mentor: mentorData, newMentees: newMentees }),
       headers: {

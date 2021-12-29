@@ -2,11 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { url } from "./UrlSettings";
 
 function CreateMentor() {
+
   const navigate = useNavigate();
+
   const addMentor = (mentor) => {
-    fetch("https://ranjith-assign-mentor.herokuapp.com/createMentor", {
+    fetch(`${url}/createMentor`, {
       method: "POST",
       body: JSON.stringify(mentor),
       headers: {
@@ -16,6 +19,7 @@ function CreateMentor() {
       .then((data) => data.json())
       .then(() => navigate.push("/Home"));
   };
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -46,6 +50,7 @@ function CreateMentor() {
       navigate.push("/Home");
     },
   });
+  
   return (
     <div>
       <div className="heading">Create mentor</div>

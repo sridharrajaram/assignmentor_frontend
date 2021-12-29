@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { url } from "./UrlSettings";
 
 const mentorContext = createContext(null);
 
@@ -9,7 +10,7 @@ function AddMentor() {
   const [mentors, setMentors] = useState([]);
   const { email, mobileNo, name, pic } = studentData;
   function getMentors() {
-    fetch("https://ranjith-assign-mentor.herokuapp.com/mentors", {
+    fetch(`${url}/mentors`, {
       method: "GET",
     })
       .then((data) => data.json())
@@ -19,7 +20,7 @@ function AddMentor() {
     getMentors();
   }, []);
   function assignMentor(mentor) {
-    fetch("https://ranjith-assign-mentor.herokuapp.com/assignMentor", {
+    fetch(`${url}/assignMentor`, {
       method: "PUT",
       body: JSON.stringify({
         student: { email: email, mobileNo: mobileNo, name: name, pic: pic },

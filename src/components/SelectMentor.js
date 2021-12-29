@@ -1,21 +1,27 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { url } from "./UrlSettings";
 
 const mentorContext = createContext(null);
+
 function SelectMentor() {
+  
   const { setMentorData } = useContext(mentorContext);
   const navigate = useNavigate();
   const [mentors, setMentors] = useState([]);
+
   function getMentors() {
-    fetch("https://ranjith-assign-mentor.herokuapp.com/mentors", {
+    fetch(`${url}/mentors`, {
       method: "GET",
     })
       .then((data) => data.json())
       .then((data) => setMentors(data));
   }
+
   useEffect(() => {
     getMentors();
   }, []);
+
   return (
     <div className="container">
       <div className="heading">Mentors</div>

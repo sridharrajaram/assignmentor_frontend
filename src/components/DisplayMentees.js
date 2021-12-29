@@ -1,13 +1,16 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { url } from "./UrlSettings";
 
 const mentorContext = createContext(null);
 function DisplayMentees() {
+
   const { mentorData } = useContext(mentorContext);
   let mentorEmail = mentorData.email;
   const [mentees, setMentees] = useState([]);
+
   function getMentees() {
     fetch(
-      `https://ranjith-assign-mentor.herokuapp.com/mentees/${mentorEmail}`,
+      `${url}/mentees/${mentorEmail}`,
       {
         method: "GET",
         headers: {
@@ -18,10 +21,12 @@ function DisplayMentees() {
       .then((data) => data.json())
       .then((data) => setMentees(data));
   }
+  
   useEffect(() => {
     getMentees();
     // eslint-disable-next-line
   }, []);
+
   return (
     <div className="container">
       <div className="heading">Mentees</div>
